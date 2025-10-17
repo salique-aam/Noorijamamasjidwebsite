@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noori Jama Masjid</title>
+<style>
+  body { font-family: 'Arial', sans-serif; background-color: #f0f5f5; margin:0; padding:0; }
+  header { background-color: #014421; color: gold; padding: 20px; text-align: center; font-size: 24px; }
+  nav { display: flex; justify-content: center; background-color: #02592d; }
+  nav a { color: gold; padding: 15px 20px; text-decoration: none; font-weight: bold; }
+  nav a:hover { background-color: #014421; }
+  section { padding: 20px; }
+  h2 { color: #014421; }
+  .prayer-time { margin: 10px 0; font-size: 18px; }
+  .gallery img { width: 100%; max-width: 300px; margin: 10px; border-radius: 10px; }
+  .admin-section { margin-top: 20px; padding: 15px; border: 2px solid #02592d; border-radius: 10px; }
+  .admin-section input, .admin-section textarea { width: 100%; padding: 8px; margin:5px 0; }
+  .btn { background-color: #014421; color: gold; padding: 10px 15px; border: none; cursor: pointer; font-weight: bold; margin-top:5px; }
+  .btn:hover { background-color: #02592d; }
+  .language-select { float:right; margin-right:20px; margin-top:-50px; }
+</style>
+</head>
+<body>
+
+<header>
+  Noori Jama Masjid<br>
+  <small>Sihuli, Sherghati, Gaya, Bihar</small>
+  <div class="language-select">
+    <select id="languageSelect" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="ur">Urdu</option>
+    </select>
+  </div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#prayer">Prayer Times</a>
+  <a href="#about">About</a>
+  <a href="#donate">Donate</a>
+  <a href="#contact">Contact</a>
+  <a href="#admin">Edit</a>
+</nav>
+
+<section id="home">
+  <h2>Welcome to Noori Jama Masjid</h2>
+  <p>Peaceful place of worship and community gathering. Please select your preferred language.</p>
+</section>
+
+<section id="prayer">
+  <h2>Prayer Times</h2>
+  <div class="prayer-time" id="fajr">Fajr: 5:00 AM</div>
+  <div class="prayer-time" id="zuhr">Zuhr: 1:30 PM</div>
+  <div class="prayer-time" id="asr">Asr: 4:30 PM</div>
+  <div class="prayer-time" id="maghrib">Maghrib: 5:34 PM</div>
+  <div class="prayer-time" id="isha">Isha: 8:15 PM</div>
+</section>
+
+<section id="about">
+  <h2>About Masjid</h2>
+  <p id="aboutText">[You can add your About Masjid text here later]</p>
+</section>
+
+<section id="donate">
+  <h2>Donate / Ṣadaqah</h2>
+  <p id="donateText">For donations or Ṣadaqah, please contact the Imam of Noori Jama Masjid directly.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Location: Sihuli, Sherghati, Gaya, Bihar</p>
+  <p>Email / Phone: [Add if you want]</p>
+  <p>Google Map: <a href="https://www.google.com/maps" target="_blank">View Map</a></p>
+</section>
+
+<section id="gallery">
+  <h2>Photo Gallery</h2>
+  <div class="gallery" id="galleryImages">
+    <!-- Add images here -->
+    <img src="https://via.placeholder.com/300x200?text=Masjid+1" alt="Masjid Image 1">
+    <img src="https://via.placeholder.com/300x200?text=Masjid+2" alt="Masjid Image 2">
+  </div>
+</section>
+
+<section id="admin" class="admin-section">
+  <h2>Admin / Edit Section</h2>
+  <p>Edit text or prayer times easily:</p>
+
+  <label>Fajr Time:</label>
+  <input type="text" id="editFajr" placeholder="5:00 AM">
+  <label>Zuhr Time:</label>
+  <input type="text" id="editZuhr" placeholder="1:30 PM">
+  <label>Asr Time:</label>
+  <input type="text" id="editAsr" placeholder="4:30 PM">
+  <label>Maghrib Time:</label>
+  <input type="text" id="editMaghrib" placeholder="5:34 PM">
+  <label>Isha Time:</label>
+  <input type="text" id="editIsha" placeholder="8:15 PM">
+  <button class="btn" onclick="updatePrayerTimes()">Update Prayer Times</button>
+
+  <label>About Masjid:</label>
+  <textarea id="editAbout" rows="3" placeholder="[Add your About text here]"></textarea>
+  <button class="btn" onclick="updateAbout()">Update About</button>
+
+  <label>Donate Message:</label>
+  <textarea id="editDonate" rows="2">For donations or Ṣadaqah, please contact the Imam of Noori Jama Masjid directly.</textarea>
+  <button class="btn" onclick="updateDonate()">Update Donate Message</button>
+
+  <label>Add Image URL:</label>
+  <input type="text" id="newImageURL" placeholder="Paste image URL here">
+  <button class="btn" onclick="addImage()">Add Image</button>
+</section>
+
+<script>
+  // Update prayer times
+  function updatePrayerTimes() {
+    document.getElementById('fajr').innerText = 'Fajr: ' + document.getElementById('editFajr').value;
+    document.getElementById('zuhr').innerText = 'Zuhr: ' + document.getElementById('editZuhr').value;
+    document.getElementById('asr').innerText = 'Asr: ' + document.getElementById('editAsr').value;
+    document.getElementById('maghrib').innerText = 'Maghrib: ' + document.getElementById('editMaghrib').value;
+    document.getElementById('isha').innerText = 'Isha: ' + document.getElementById('editIsha').value;
+    alert('Prayer times updated!');
+  }
+
+  // Update About Masjid text
+  function updateAbout() {
+    document.getElementById('aboutText').innerText = document.getElementById('editAbout').value;
+    alert('About Masjid updated!');
+  }
+
+  // Update Donate message
+  function updateDonate() {
+    document.getElementById('donateText').innerText = document.getElementById('editDonate').value;
+    alert('Donate message updated!');
+  }
+
+  // Add new image to gallery
+  function addImage() {
+    const url = document.getElementById('newImageURL').value;
+    if(url) {
+      const img = document.createElement('img');
+      img.src = url;
+      document.getElementById('galleryImages').appendChild(img);
+      document.getElementById('newImageURL').value = '';
+      alert('Image added!');
+    } else {
+      alert('Please enter an image URL.');
+    }
+  }
+
+  // Language selection (placeholder, you can expand for full translations)
+  function changeLanguage() {
+    const lang = document.getElementById('languageSelect').value;
+    if(lang==='hi'){ alert('Hindi language selected (you can add translations)'); }
+    else if(lang==='ur'){ alert('Urdu language selected (you can add translations)'); }
+    else{ alert('English selected'); }
+  }
+</script>
+
+</body>
+</html>
